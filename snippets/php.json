@@ -1,0 +1,13 @@
+{
+	"new_file": {
+		"prefix": "nfil",
+		"body": [
+			"<?php",
+			"declare(strict_types=1);",
+			"",
+			"class $1 {",
+			"	$2",
+			"}"
+		]
+	}
+}
