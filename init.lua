@@ -642,11 +642,31 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        ruby = { 'rubocop' },
+        eruby = { 'erb_format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      },
+      formatters = {
+        rubocop = function()
+          return {
+            command = 'rubocop',
+            args = {
+              '--server',
+              '--fix-layout',
+              '--autocorrect-all',
+              '--format',
+              'files',
+              '--stderr',
+              '--stdin',
+              '$FILENAME',
+            },
+            stdin = true,
+          }
+        end,
       },
     },
   },
@@ -831,7 +851,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'php', 'vim', 'vimdoc', 'java' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'php', 'vim', 'vimdoc', 'java', 'ruby' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
