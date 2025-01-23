@@ -57,6 +57,8 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+-- Enable smart indenting on new lines
+--
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
 
@@ -670,7 +672,9 @@ require('lazy').setup({
       },
     },
   },
-
+  {
+    'github/copilot.vim',
+  },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
